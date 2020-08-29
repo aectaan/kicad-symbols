@@ -13,5 +13,6 @@ jobs:
       - name: update symbols from KiCAD repo
         run: |
           git config pull.rebase false
-          git pull https://github.com/KiCad/kicad-symbols master
+          git remote add sync https://github.com/KiCad/kicad-symbols
+          git pull sync master
           git push origin master
