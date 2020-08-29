@@ -1,17 +1,29 @@
-# This is a basic workflow to help you get started with Actions
-
-name: symbols_updater
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron:  '*/5 * * *'
 
 jobs:
-  update:
+  sync_with_upstream:
     runs-on: ubuntu-latest
+    name: Sync master with upstream latest
+
     steps:
-      - uses: TG908/fork-sync@v1.1
-        with:
-          github_token: ${{ secrets.BOT_TOKEN }}
-          owner: llvm
-          base: master
-          head: master
+    # Step 1: run a standard checkout action, provided by github
+    - name: Checkout master
+      uses: actions/checkout@v2
+      with:
+        ref: master
+    
+    # Step 2: run this sync action - specify the upstream repo, upstream branch to sync with, and target sync branch
+    - name: Pull upstream changes
+      id: sync
+      uses: aormsby/Fork-Sync-With-Upstream-action@v1
+      with:
+        upstream_repository: KiCad/kicad-symbols
+        upstream_branch: master
+        target_branch: master                       # optional
+        github_token: ${{ secrets.BOT_TOKEN }}   # optional, for accessing repos that requir authentication
+        
+    # Step 3: Print a helpful timestamp for your records (optional)
+    - name: Timestamp
+      run: date
