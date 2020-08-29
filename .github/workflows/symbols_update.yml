@@ -1,11 +1,10 @@
-# This is a basic workflow to help you get started with Actions
 
-name: schematic-update
+name: symbols-update
 on:
   schedule:
-    - cron: '20 * * * *'
+    - cron: '*/5 * * * *'
 jobs:
-  autopull:
+  symbols-update:
     runs-on: ubuntu-latest
     steps:
       - name: checkout_master
