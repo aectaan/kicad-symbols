@@ -3,18 +3,15 @@
 name: symbols_updater
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: sync my fork
-        uses: sudo-bot/action-fork-sync@v1.0.4
+      - uses: TG908/fork-sync@v1.1
         with:
-            branches: master
-            source-url: "https://${{ secrets.BOT_TOKEN }}:x-oauth-basic@github.com/KiCad/kicad-symbols.git"
-        # Give repo scope to token and access to myname/officialproject-fork for a token user != myname (eg: a bot)
-            fork-url: "https://${{ secrets.BOT_TOKEN }}:x-oauth-basic@github.com/aectaan/kicad-symbols.git"
-            dry-run: "true" # remove this line to make sync effective
-            clone-depth: "100" # optional, defaults to 100
+          github_token: ${{ secrets.BOT_TOKEN }}
+          owner: llvm
+          base: master
+          head: master
