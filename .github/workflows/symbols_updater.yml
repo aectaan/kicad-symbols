@@ -21,9 +21,7 @@ jobs:
       with:
         upstream_repository: KiCad/kicad-symbols
         upstream_branch: master
-        target_branch: master                       # optional
-        github_token: ${{ secrets.BOT_TOKEN }}   # optional, for accessing repos that requir authentication
-        
+        target_branch: master    
     # Step 3: Print a helpful timestamp for your records (optional)
     - name: Timestamp
       run: date
