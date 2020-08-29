@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: update symbols from KiCAD repo
         run: |
-          git checkout master
+          git config pull.rebase false
           git pull https://github.com/KiCad/kicad-symbols master
           git push origin master
