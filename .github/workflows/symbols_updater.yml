@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: sync my fork
-        uses: sudo-bot/action-fork-sync@v1.0.1
+        uses: sudo-bot/action-fork-sync@v1.0.4
         with:
             branches: master
             source-url: "https://${{ secrets.BOT_TOKEN }}:x-oauth-basic@github.com/KiCad/kicad-symbols.git"
