@@ -14,5 +14,5 @@ jobs:
         run: |
           git config pull.rebase false
           git remote add sync https://github.com/KiCad/kicad-symbols
-          git pull sync master
+          git pull sync master --allow-unrelated-histories
           git push origin master
