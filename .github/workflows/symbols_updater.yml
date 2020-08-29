@@ -13,6 +13,8 @@ jobs:
       - name: update symbols from KiCAD repo
         run: |
           git config pull.rebase false
+          git config --global user.email "bot@notanotherone.com"
+          git config --global user.name "nAO bot"
           git remote add sync https://github.com/KiCad/kicad-symbols
           git pull sync master --allow-unrelated-histories
           git push origin master
