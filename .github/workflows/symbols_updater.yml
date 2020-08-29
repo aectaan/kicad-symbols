@@ -9,12 +9,12 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: update symbols from KiCAD repo
-        run: |
-          git config pull.rebase false
-          git config --global user.email "bot@notanotherone.com"
-          git config --global user.name "nAO bot"
-          git remote add sync https://github.com/KiCad/kicad-symbols
-          git pull sync master --allow-unrelated-histories
-          git push origin master
+      - name: sync my fork
+        uses: sudo-bot/action-fork-sync@v1.0.1
+        with:
+            branches: master
+            source-url: "https://${{ secrets.BOT_TOKEN }}:x-oauth-basic@github.com/KiCad/kicad-symbols.git"
+        # Give repo scope to token and access to myname/officialproject-fork for a token user != myname (eg: a bot)
+            fork-url: "https://${{ secrets.BOT_TOKEN }}:x-oauth-basic@github.com/aectaan/kicad-symbols.git"
+            dry-run: "true" # remove this line to make sync effective
+            clone-depth: "100" # optional, defaults to 100
