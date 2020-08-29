@@ -1,0 +1,16 @@
+# This is a basic workflow to help you get started with Actions
+
+name: schematic-update
+on:
+  schedule:
+    - cron: '20 * * * *'
+jobs:
+  autopull:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout_master
+        run: git checkout master
+      - name: pull_origin
+        run: git pull https://github.com/KiCad/kicad-symbols master
+      - name: push_to_master
+        run: git push origin
